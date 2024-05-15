@@ -24,36 +24,36 @@ Future diabetesRiskReq(
     headers: headers,
     body: jsonEncode(
       [
-        <String, dynamic>{'how old are you': age, 'answer': age},
-        <String, dynamic>{'what is your gender': gender, 'answer': gender},
-        <String, dynamic>{'BMI': bmi, 'answer': bmi},
+        <String, dynamic>{'question': 'how old are you', 'answer': age},
+        <String, dynamic>{'question': 'what is your gender', 'answer': gender},
+        <String, dynamic>{'question': 'BMI', 'answer': bmi},
         <String, dynamic>{
-          'Have you smoked at least 100 cigarettes in your entire life? [Note: 5 packs = 100 cigarettes]':
-              cigSmoked,
+          'question':
+              'Have you smoked at least 100 cigarettes in your entire life? [Note: 5 packs = 100 cigarettes]',
           'answer': cigSmoked,
         },
         <String, dynamic>{
-          'Ever had Physical activity in past 30 days - not including job':
-              phyActi,
+          'question':
+              'Ever had Physical activity in past 30 days - not including job',
           'answer': phyActi
         },
         <String, dynamic>{
-          'Do you Consume Fruit once or more times per day?': fruitCons,
+          'question': 'Do you Consume Fruit once or more times per day?',
           'answer': fruitCons,
         },
         <String, dynamic>{
-          'Are you a heavy drinker (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)':
-              heavDrink,
+          'question':
+              'Are you a heavy drinker (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)',
           'answer': heavDrink,
         },
         <String, dynamic>{
-          'Ever been told by a doctor, nurse or other health professional that your blood cholesterol is high':
-              bloodChole,
+          'question':
+              'Ever been told by a doctor, nurse or other health professional that your blood cholesterol is high',
           'answer': bloodChole,
         },
         <String, dynamic>{
-          'Ever been told you have high blood pressure by a doctor, nurse, or other health professional':
-              highBloodPress,
+          'question':
+              'Ever been told you have high blood pressure by a doctor, nurse, or other health professional',
           'answer': highBloodPress,
         },
       ],
