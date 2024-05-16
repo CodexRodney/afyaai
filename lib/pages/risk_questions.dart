@@ -2,6 +2,7 @@ import 'package:afyaaidemo/customs/customs.dart';
 import 'package:afyaaidemo/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class RiskQuestionsPage extends StatefulWidget {
   RiskQuestionsPage({super.key});
@@ -426,6 +427,7 @@ class _RiskQuestionsPageState extends State<RiskQuestionsPage> {
                   print("I am here");
                   widget.waiting = 1;
                 });
+                var highRisk = 1 - response[0]['lowriskproba'];
                 showDialog(
                   context: context,
                   builder: (context) {
@@ -457,10 +459,10 @@ class _RiskQuestionsPageState extends State<RiskQuestionsPage> {
                                     label: "${response[0]['risklevel']}",
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(
                                       vertical: 16.0, horizontal: 8),
-                                  child: const CustomText(
+                                  child: CustomText(
                                     label: "LowRiskProbability",
                                     isBold: true,
                                   ),
@@ -469,8 +471,20 @@ class _RiskQuestionsPageState extends State<RiskQuestionsPage> {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 16.0, horizontal: 8),
                                   child: CustomText(
-                                    label: "${response[0]['lowriskproba']}",
+                                    label: "$highRisk",
                                   ),
+                                ),
+                                LinearPercentIndicator(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.4,
+                                  lineHeight: 14.0,
+                                  percent: highRisk as double,
+                                  backgroundColor: Colors.grey,
+                                  progressColor: highRisk < 0.4
+                                      ? Colors.green
+                                      : highRisk < 0.75
+                                          ? Colors.amber
+                                          : Colors.red,
                                 ),
                                 const Padding(
                                   padding: EdgeInsets.symmetric(
