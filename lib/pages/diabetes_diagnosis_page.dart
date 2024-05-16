@@ -296,31 +296,61 @@ class _DiabetesDiagnosis extends State<DiabetesDiagnosis> {
                               return Center(
                                 child: Padding(
                                   padding: const EdgeInsets.all(12.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        width: 16,
-                                      ), // Adding space between image and summary
-                                      // Displaying the summary
-                                      Text(
-                                        'prediction: ${response[0]['prediction']}',
-                                        style: TextStyle(fontSize: 16),
-                                        textAlign: TextAlign.left,
+                                  child: SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.35,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
+                                    child: Card(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Center(
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: SizedBox(
+                                                height: 150,
+                                                child: Image.asset(
+                                                  "assets/images/result_diag.png",
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              'Prediction: ${response[0]['prediction']}',
+                                              style:
+                                                  const TextStyle(fontSize: 16),
+                                              textAlign: TextAlign.left,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              'Nodiabetesproba: ${response[0]['nodiabetesproba']}',
+                                              style:
+                                                  const TextStyle(fontSize: 16),
+                                              textAlign: TextAlign.left,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              'Statement: ${response[0]['statement']}',
+                                              style:
+                                                  const TextStyle(fontSize: 16),
+                                              textAlign: TextAlign.left,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      Text(
-                                        'nodiabetesproba: ${response[0]['nodiabetesproba']}',
-                                        style: TextStyle(fontSize: 16),
-                                        textAlign: TextAlign.left,
-                                      ),
-                                      Text(
-                                        'statement: ${response[0]['statement']}',
-                                        style: TextStyle(fontSize: 16),
-                                        textAlign: TextAlign.left,
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
                               );
@@ -334,8 +364,11 @@ class _DiabetesDiagnosis extends State<DiabetesDiagnosis> {
               ),
             ),
             widget.waiting == 0
-                ? const CircularProgressIndicator(
-                    color: Colors.black,
+                ? const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: CircularProgressIndicator(
+                      color: Colors.black,
+                    ),
                   )
                 : const SizedBox()
           ],

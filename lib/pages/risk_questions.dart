@@ -1,9 +1,11 @@
 import 'package:afyaaidemo/customs/customs.dart';
 import 'package:afyaaidemo/services/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class RiskQuestionsPage extends StatefulWidget {
-  const RiskQuestionsPage({super.key});
+  RiskQuestionsPage({super.key});
+  int waiting = 3;
 
   @override
   State<RiskQuestionsPage> createState() => _RiskQuestionsPageState();
@@ -400,6 +402,10 @@ class _RiskQuestionsPageState extends State<RiskQuestionsPage> {
             buttonLabel: "GET DIAGNOSIS",
             // send request for the diagnosis here
             action: () async {
+              setState(() {
+                print("I am here");
+                widget.waiting = 0;
+              });
               // register user
               var response = await diabetesRiskReq(
                 int.parse(ageController.text),
@@ -413,10 +419,145 @@ class _RiskQuestionsPageState extends State<RiskQuestionsPage> {
                 highBld!,
               );
               print(response);
-              print(
-                  "$cigValue $phyAct $fruitValue $heavDrink $bldChole $highBld");
+              // print(
+              //     "$cigValue $phyAct $fruitValue $heavDrink $bldChole $highBld");
+              if (response[1] == 200 && response[0]['status'] == "success") {
+                setState(() {
+                  print("I am here");
+                  widget.waiting = 1;
+                });
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          height: MediaQuery.of(context).size.height * 0.8,
+                          child: Card(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                // Displaying the summary
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 16.0, horizontal: 8),
+                                  child: CustomText(
+                                    label: "Risk Level:",
+                                    isBold: true,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 16.0, horizontal: 8),
+                                  child: CustomText(
+                                    label: "${response[0]['risklevel']}",
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 16.0, horizontal: 8),
+                                  child: const CustomText(
+                                    label: "LowRiskProbability",
+                                    isBold: true,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 16.0, horizontal: 8),
+                                  child: CustomText(
+                                    label: "${response[0]['lowriskproba']}",
+                                  ),
+                                ),
+                                const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 16.0, horizontal: 8),
+                                  child: CustomText(
+                                    label: "Advice",
+                                    isBold: true,
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 32),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.3,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: ListView.builder(
+                                          shrinkWrap: true,
+                                          clipBehavior: Clip.none,
+                                          scrollDirection: Axis.vertical,
+                                          itemCount:
+                                              response[0]['advice'].length,
+                                          itemBuilder: (context, index) {
+                                            return ListTile(
+                                              leading: const Icon(
+                                                Icons.tips_and_updates,
+                                                color: Color.fromARGB(
+                                                    255, 43, 219, 52),
+                                              ),
+                                              title: Text(
+                                                  response[0]['advice'][index]),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 12,
+                                    horizontal: 8,
+                                  ),
+                                  child: Image.asset(
+                                    "assets/images/more_advice.png",
+                                    height: 100,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: CustomText(
+                                    label: response[0]['url'],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              } else {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return const Card(
+                      child: CustomText(
+                        label: "Something Went Wrong",
+                        textcolor: Colors.red,
+                      ),
+                    );
+                  },
+                );
+              }
             },
-          )
+          ),
+          widget.waiting == 0
+              ? const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(
+                    color: Colors.black,
+                  ),
+                )
+              : const SizedBox()
         ],
       ),
     );

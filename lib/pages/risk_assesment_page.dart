@@ -155,7 +155,7 @@ class RiskAssesmentPage extends StatelessWidget {
             float: false,
           ),
           CustomElevatedButton(
-            buttonLabel: "GET DIAGNOSIS",
+            buttonLabel: "GET ASSESSMENT",
             // send request for the diagnosis here
             action: () async {
               // register user
