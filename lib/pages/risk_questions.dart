@@ -40,7 +40,7 @@ class _RiskQuestionsPageState extends State<RiskQuestionsPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.46,
+                  width: MediaQuery.of(context).size.width * 0.38,
                   decoration: const BoxDecoration(
                     shape: BoxShape.rectangle,
                   ),
@@ -50,7 +50,7 @@ class _RiskQuestionsPageState extends State<RiskQuestionsPage> {
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Divider(
-                          color: Colors.black,
+                          color: Color(0xFF0f305e),
                         ),
                       ),
                       const Padding(
@@ -70,7 +70,7 @@ class _RiskQuestionsPageState extends State<RiskQuestionsPage> {
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Divider(
-                          color: Colors.black,
+                          color: Color(0xFF0f305e),
                         ),
                       ),
                       const Padding(
@@ -110,7 +110,7 @@ class _RiskQuestionsPageState extends State<RiskQuestionsPage> {
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Divider(
-                          color: Colors.black,
+                          color: Color(0xFF0f305e),
                         ),
                       ),
                       const Padding(
@@ -198,7 +198,7 @@ class _RiskQuestionsPageState extends State<RiskQuestionsPage> {
                   width: MediaQuery.of(context).size.width * 0.05,
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.46,
+                  width: MediaQuery.of(context).size.width * 0.40,
                   decoration: const BoxDecoration(
                     shape: BoxShape.rectangle,
                   ),
@@ -269,7 +269,7 @@ class _RiskQuestionsPageState extends State<RiskQuestionsPage> {
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Divider(
-                          color: Colors.black,
+                          color: Color(0xFF0f305e),
                         ),
                       ),
                       const Padding(

@@ -1,4 +1,6 @@
+import 'package:afyaaidemo/customs/customs.dart';
 import 'package:afyaaidemo/pages/diabetes_diagnosis_page.dart';
+import 'package:afyaaidemo/pages/home.dart';
 import 'package:afyaaidemo/pages/image_processing_page.dart';
 import 'package:afyaaidemo/pages/risk_assesment_page.dart';
 import 'package:afyaaidemo/pages/risk_questions.dart';
@@ -21,15 +23,14 @@ class MyApp extends StatelessWidget {
       // initialRoute: "/",
       getPages: Routes.routes,
       home: SafeArea(
-        child: DiabetesDiagnosis(),
+        child: MyHomePage(),
       ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -37,15 +38,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> _widgetOptions = <Widget>[
+    // Home Page
+    HomePage(),
     // image Processing
     ImgProcessPage(),
     // Risk Assesment Page
-    RiskAssesmentPage(),
+    RiskQuestionsPage(),
     // Diabetes Diagnosis Page
-    // DiabetesDiagnosis(),
+    DiabetesDiagnosis(),
   ];
 
   void _onItemTapped(int index) {
@@ -57,68 +58,78 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          },
-        ),
-      ),
-      body: Center(
-        child: _widgetOptions[_selectedIndex],
-      ),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
+      body: Row(
+        children: [
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.14,
+            child: Drawer(
+              child: ListView(
+                // Remove any padding from the ListView.
+                padding: EdgeInsets.zero,
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.15,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.zero),
+                      shape: BoxShape.rectangle,
+                      color: Colors.blue,
+                    ),
+                    child: const CustomText(
+                      label: "AFYA AI",
+                      size: 22,
+                    ),
+                  ),
+                  ListTile(
+                    title: const CustomText(label: "Home"),
+                    selected: _selectedIndex == 0,
+                    onTap: () {
+                      // Update the state of the app
+                      _onItemTapped(0);
+                      // Then close the drawer
+                      // Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
+                    title: const CustomText(label: "Image Processing"),
+                    selected: _selectedIndex == 1,
+                    onTap: () {
+                      // Update the state of the app
+                      _onItemTapped(1);
+                      // Then close the drawer
+                      // Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
+                    title: const CustomText(label: "Risk Assessment"),
+                    selected: _selectedIndex == 2,
+                    onTap: () {
+                      // Update the state of the app
+                      _onItemTapped(2);
+                      // Then close the drawer
+                      // Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
+                    title: const CustomText(label: "Diabetes Diagnosis"),
+                    selected: _selectedIndex == 3,
+                    onTap: () {
+                      // Update the state of the app
+                      _onItemTapped(3);
+                      // Then close the drawer
+                      // Navigator.pop(context);
+                    },
+                  ),
+                ],
               ),
-              child: Text('afya ai Demo'),
             ),
-            ListTile(
-              title: const Text('Image Processing'),
-              selected: _selectedIndex == 0,
-              onTap: () {
-                // Update the state of the app
-                _onItemTapped(0);
-                // Then close the drawer
-                Navigator.pop(context);
-              },
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.83,
+            child: Center(
+              child: _widgetOptions[_selectedIndex],
             ),
-            ListTile(
-              title: const Text('Risk Assesment'),
-              selected: _selectedIndex == 1,
-              onTap: () {
-                // Update the state of the app
-                _onItemTapped(1);
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Diabetes Diagnosis'),
-              selected: _selectedIndex == 2,
-              onTap: () {
-                // Update the state of the app
-                _onItemTapped(2);
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

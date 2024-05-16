@@ -148,4 +148,16 @@ class CustomTextField extends StatelessWidget {
   }
 }
 
-// Custom text fields
+class WaiterLoading extends StatefulWidget {
+  const WaiterLoading({super.key});
+
+  @override
+  State<WaiterLoading> createState() => _WaiterLoadingState();
+}
+
+class _WaiterLoadingState extends State<WaiterLoading> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}

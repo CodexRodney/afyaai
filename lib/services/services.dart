@@ -24,37 +24,37 @@ Future diabetesRiskReq(
     headers: headers,
     body: jsonEncode(
       [
-        <String, dynamic>{'question': 'how old are you', 'answer': age},
-        <String, dynamic>{'question': 'what is your gender', 'answer': gender},
-        <String, dynamic>{'question': 'BMI', 'answer': bmi},
+        <String, dynamic>{'quiz': 'how old are you', 'answer': age},
+        <String, dynamic>{'quiz': 'what is your gender', 'answer': gender},
+        <String, dynamic>{'quiz': 'BMI', 'answer': bmi},
         <String, dynamic>{
-          'question':
+          'quiz':
               'Have you smoked at least 100 cigarettes in your entire life? [Note: 5 packs = 100 cigarettes]',
-          'answer': cigSmoked,
+          'answer': cigSmoked
         },
         <String, dynamic>{
-          'question':
+          'quiz':
               'Ever had Physical activity in past 30 days - not including job',
           'answer': phyActi
         },
         <String, dynamic>{
-          'question': 'Do you Consume Fruit once or more times per day?',
-          'answer': fruitCons,
+          'quiz': 'Do you Consume Fruit once or more times per day?',
+          'answer': fruitCons
         },
         <String, dynamic>{
-          'question':
+          'quiz':
               'Are you a heavy drinker (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)',
-          'answer': heavDrink,
+          'answer': heavDrink
         },
         <String, dynamic>{
-          'question':
+          'quiz':
               'Ever been told by a doctor, nurse or other health professional that your blood cholesterol is high',
-          'answer': bloodChole,
+          'answer': bloodChole
         },
         <String, dynamic>{
-          'question':
+          'quiz':
               'Ever been told you have high blood pressure by a doctor, nurse, or other health professional',
-          'answer': highBloodPress,
+          'answer': highBloodPress
         },
       ],
     ),

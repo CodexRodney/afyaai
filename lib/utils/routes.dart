@@ -3,6 +3,6 @@ import 'package:get/get.dart';
 
 class Routes {
   static var routes = [
-    GetPage(name: "/", page: () => const ImgProcessPage()),
+    GetPage(name: "/", page: () => ImgProcessPage()),
   ];
 }
