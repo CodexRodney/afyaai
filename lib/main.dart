@@ -60,25 +60,29 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Row(
         children: [
-          SizedBox(
+          Container(
             width: MediaQuery.of(context).size.width * 0.14,
+            color: Colors.white,
             child: Drawer(
+              shape: const BeveledRectangleBorder(),
               child: ListView(
                 // Remove any padding from the ListView.
                 padding: EdgeInsets.zero,
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.zero),
-                      shape: BoxShape.rectangle,
-                      color: Colors.blue,
-                    ),
-                    child: const CustomText(
-                      label: "AFYA AI",
-                      size: 22,
-                    ),
-                  ),
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.zero),
+                        shape: BoxShape.rectangle,
+                        color: Color(0xFF0f305e),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          "assets/images/logonam.png",
+                          width: 10,
+                        ),
+                      )),
                   ListTile(
                     title: const CustomText(label: "Home"),
                     selected: _selectedIndex == 0,
@@ -89,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       // Navigator.pop(context);
                     },
                   ),
+                  const Divider(),
                   ListTile(
                     title: const CustomText(label: "Image Processing"),
                     selected: _selectedIndex == 1,
@@ -99,6 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       // Navigator.pop(context);
                     },
                   ),
+                  const Divider(),
                   ListTile(
                     title: const CustomText(label: "Risk Assessment"),
                     selected: _selectedIndex == 2,
@@ -109,6 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       // Navigator.pop(context);
                     },
                   ),
+                  const Divider(),
                   ListTile(
                     title: const CustomText(label: "Diabetes Diagnosis"),
                     selected: _selectedIndex == 3,
